@@ -24,7 +24,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 <mvc:annotation-driven />
 <tx:annotation-driven />
 
-<jee:jndi-lookup id="ds" jndi-name="jboss/MySqlDS" resource-ref="true" />
+<jee:jndi-lookup id="ds" jndi-name="java:/jboss/MySqlDS" resource-ref="true" />
 
 <bean id="persistLog" class="com.cl.business.PersistLog" />
 
