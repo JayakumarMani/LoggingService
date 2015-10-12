@@ -39,6 +39,9 @@ import com.cl.error.ErrorDetails;
 import com.cl.error.ErrorDetailsJson;
 import com.cl.services.out.LogOutput;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 public class XmlController {
 
@@ -58,7 +61,7 @@ public class XmlController {
 	final static Logger logger = Logger.getLogger(XmlController.class);
 	
 	@RequestMapping(value="/xml", method={RequestMethod.POST}, headers="content-type=application/xml")
-    public @ResponseBody LogOutput logEntry(@RequestBody LoggingService logService) throws Exception {
+    public @ResponseBody LogOutput logEntry(@RequestBody LoggingService logService, HttpServletResponse response) throws Exception {
 
 		logger.info("Printing the logmessage " + logService.getAppId());    	
     	logger.info("Printing the logmessage " + logService.getSourceIp());
@@ -81,6 +84,9 @@ public class XmlController {
     		throw e;
     	}
     	
+    	response.setHeader("Access-Control-Allow-Origin", "*");
+	response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+		
     	LogOutput lo = new LogOutput();
     	lo.setStatus("00");
     	lo.setDescription("Log Persisted Successfully");
