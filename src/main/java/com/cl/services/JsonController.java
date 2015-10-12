@@ -34,6 +34,7 @@ import com.cl.business.PersistLog;
 import com.cl.error.ErrorDetails;
 import com.cl.error.ErrorDetailsJson;
 import com.cl.services.out.LogOutput;
+import com.cl.services.out.LogOutputJson;
 
 @RestController
 
@@ -56,7 +57,7 @@ public class JsonController {
 	
 	
 	@RequestMapping(value="/json", method={RequestMethod.POST}, headers="content-type=application/json")
-    public LogOutput logEntryJson(@RequestBody JsonInput jInput) throws Exception {
+    public LogOutputJson logEntryJson(@RequestBody JsonInput jInput) throws Exception {
 
 		logger.info("Printing the logmessage " + jInput.getAppId());    	
     	logger.info("Printing the logmessage " + jInput.getSourceIp());
@@ -81,7 +82,7 @@ public class JsonController {
     		throw e;
     	}
     	
-    	LogOutput lo = new LogOutput();
+    	LogOutputJson lo = new LogOutputJson();
     	lo.setStatus("00");
     	lo.setDescription("Log Persisted Successfully");
     	
